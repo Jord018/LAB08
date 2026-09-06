@@ -50,4 +50,14 @@ public class OrganizerDaoImpl implements OrganizerDao {
     public Organizer getOrganizer(Long id) {
         return organizerList.stream().filter(organizer -> organizer.getId().equals(id)).findFirst().orElse(null);
     }
+
+    @Override
+    public Organizer save(Organizer organizer) {
+        long nextId = organizerList.stream().mapToLong(Organizer::getId).max().orElse(0L) + 1;
+        organizer.setId(nextId);
+        organizerList.add(organizer);
+        return organizer;
+    }
 }
+
+
