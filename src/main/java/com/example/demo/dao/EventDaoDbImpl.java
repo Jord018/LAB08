@@ -1,0 +1,34 @@
+package com.example.demo.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.Event;
+import com.example.demo.repository.EventRepository;
+
+import lombok.RequiredArgsConstructor;
+@Repository
+@RequiredArgsConstructor
+public class EventDaoDbImpl implements EventDao {
+    final EventRepository eventRepository;
+
+    @Override
+    public Integer getEventSize() {
+        return Math.toIntExact(eventRepository.count());
+    }
+
+    @Override
+    public List<Event> getEvents(Integer pageSize, Integer page) {
+        List<Event> events = eventRepository.findAll();
+        pageSize = pageSize == null ? events.size() : pageSize;
+        page = page == null ? 1 : page;
+        int firstIndex = (page - 1) * pageSize;
+        return events.subList(firstIndex, firstIndex + pageSize);
+    }
+
+    @Override
+    public Event getEvent(Long id) {
+        return eventRepository.findById(id).orElse(null);
+    }
+}
