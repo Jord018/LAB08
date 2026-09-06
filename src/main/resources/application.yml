@@ -11,6 +11,6 @@ spring:
       ddl-auto: create
   profiles:
     active: 
-        - memory
+        - db
 server:
     port: 8081
