@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Event;
@@ -10,6 +11,7 @@ import com.example.demo.entity.Event;
 import jakarta.annotation.PostConstruct;
 
 @Repository
+@Profile("memory")
 public class EventDaoImpl implements EventDao {
     List<Event> eventList;
 

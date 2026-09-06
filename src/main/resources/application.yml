@@ -9,5 +9,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+  profiles:
+    active: 
+        - memory
 server:
     port: 8081
